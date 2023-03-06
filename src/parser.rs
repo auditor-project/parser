@@ -1,10 +1,13 @@
 use regex::Regex;
+use serde::{Deserialize, Serialize};
 use std::fs;
 use walkdir::WalkDir;
 
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Signature {
     pub signature: String,
     pub filetypes: Vec<String>,
+    pub description: String,
 }
 
 #[derive(Debug)]

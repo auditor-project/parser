@@ -1,0 +1,40 @@
+- signature: "\\s\\$_FILES"
+  filetypes:
+    - php
+  description: "Matches $_FILES in PHP files"
+- signature: "\\s\\$_GET"
+  filetypes:
+    - php
+  description: "Matches $_GET in PHP files"
+- signature: "\\s\\$_POST"
+  filetypes:
+    - php
+  description: "Matches $_POST in PHP files"
+- signature: "\\s\\$_REQUEST"
+  filetypes:
+    - php
+  description: "Matches $_REQUEST in PHP files"
+- signature: "\\ssha1\\s*\\("
+  filetypes:
+    - php
+  description: "Matches sha1() function calls in PHP files"
+- signature: "\\ssha1_file\\s*\\("
+  filetypes:
+    - php
+  description: "Matches sha1_file() function calls in PHP files"
+- signature: "\\sbase64_decode\\s*\\("
+  filetypes:
+    - php
+  description: "Matches base64_decode() function calls in PHP files"
+- signature: "\\sbase64_encode\\s*\\("
+  filetypes:
+    - php
+  description: "Matches base64_encode() function calls in PHP files"
+- signature: "\\sbzcompress\\s*\\("
+  filetypes:
+    - php
+  description: "Matches bzcompress() function calls in PHP files"
+- signature: "\\sbzdecompress\\s*\\("
+  filetypes:
+    - php
+  description: "Matches bzdecompress() function calls in PHP files"

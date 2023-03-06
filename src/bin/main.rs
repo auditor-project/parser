@@ -1,49 +1,10 @@
 extern crate parser;
 use parser::parser::{find_matches, Signature};
+use std::fs;
 
 fn main() {
-    let signatures = vec![
-        Signature {
-            signature: r"\s\$_FILES".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\s\$_GET".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\s\$_POST".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\s\$_REQUEST".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\ssha1\s*\(".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\ssha1_file\s*\(".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\sbase64_decode\s*\(".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\sbase64_encode\s*\(".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\sbzcompress\s*\(".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-        Signature {
-            signature: r"\sbzdecompress\s*\(".to_string(),
-            filetypes: vec!["php".to_string()],
-        },
-    ];
+    let yaml_content = fs::read_to_string("signatures.yaml").unwrap();
+    let signatures: Vec<Signature> = serde_yaml::from_str(&yaml_content).unwrap();
 
     let matches = find_matches(
         signatures,
