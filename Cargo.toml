@@ -1,12 +1,18 @@
 [package]
-name = "parser"
+name = "auditor-parser"
 version = "0.1.0"
 edition = "2021"
+authors = ["z9fr <z9fr@protonmail.com>"]
+description = "parser cli for auditor"
+readme = "README.md"
+license = "ISC"
+repository = "https://github.com/auditor-project/parser"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 regex = "1.7.1"
 walkdir = "2.3.2"
+clap = { version = "3.1.6", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_yaml = "0.8.17"
