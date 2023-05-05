@@ -10,7 +10,7 @@ pub struct Signature {
     pub description: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct MatchResult {
     pub id: usize,
     pub file: String,
