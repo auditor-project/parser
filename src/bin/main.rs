@@ -1,6 +1,5 @@
 use auditor_parser::parser::{find_matches, Signature};
 use clap::{App, Arg};
-use parser::parser::{find_matches, Signature};
 use serde_json::to_string_pretty;
 use std::fs;
 
