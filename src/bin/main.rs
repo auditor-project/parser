@@ -1,5 +1,6 @@
 use auditor_parser::parser::{find_matches, Signature};
 use clap::{App, Arg};
+use serde_json::to_string_pretty;
 use std::fs;
 
 fn main() {
@@ -36,5 +37,6 @@ fn main() {
 
     // Find matches
     let matches = find_matches(signatures, path);
-    println!("{:#?}", matches);
+    let json = to_string_pretty(&matches).unwrap();
+    print!("{}", json);
 }

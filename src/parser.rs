@@ -10,7 +10,7 @@ pub struct Signature {
     pub description: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize)]
 pub struct MatchResult {
     pub id: usize,
     pub file: String,
@@ -19,6 +19,7 @@ pub struct MatchResult {
     pub match_str: String,
     pub hits: String,
     pub line: usize,
+    pub code: Vec<(usize, String, bool)>,
 }
 
 pub fn find_matches(signatures: Vec<Signature>, directory: &str) -> Vec<MatchResult> {
@@ -49,6 +50,19 @@ pub fn find_matches(signatures: Vec<Signature>, directory: &str) -> Vec<MatchRes
             for (i, line) in content.lines().enumerate() {
                 for capture in regex.captures_iter(line) {
                     let match_str = capture.get(0).unwrap().as_str().to_string();
+
+                    let mut code = Vec::new();
+                    for (j, code_line) in content.lines().enumerate() {
+                        if j < i.saturating_sub(5) || j > i + 5 {
+                            code.push((j + 1, code_line.to_string(), false));
+                        } else {
+                            code.push((
+                                j + 1,
+                                code_line.to_string(),
+                                code_line.contains(&match_str),
+                            ));
+                        }
+                    }
                     let result = MatchResult {
                         id: id_counter,
                         file: path.to_str().unwrap_or_default().to_string(),
@@ -57,6 +71,7 @@ pub fn find_matches(signatures: Vec<Signature>, directory: &str) -> Vec<MatchRes
                         hits: line.to_string(),
                         match_str,
                         line: i + 1,
+                        code,
                     };
                     matches.push(result);
                     id_counter += 1;
