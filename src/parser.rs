@@ -7,7 +7,7 @@ use walkdir::WalkDir;
 pub struct Signature {
     pub signature: String,
     pub filetypes: Vec<String>,
-    pub description: String,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
